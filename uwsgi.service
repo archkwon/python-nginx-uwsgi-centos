@@ -1,0 +1,20 @@
+[Unit]
+Description=uWSGI service
+
+
+
+[Service]
+ExecStartPre=/bin/mkdir -p /run/uwsgi
+
+ExecStartPre=/bin/chown root:nginx /run/uwsgi
+
+ExecStart=/www/project_name/venv/bin/uwsgi --emperor /etc/uwsgi/sites
+Restart=always
+Type=notify
+NotifyAccess=all
+
+
+
+[install]
+WantedBy=multi-user.target
+
